@@ -1,2 +1,1 @@
-Xin chào FIT4012!
-Đây là bản tin mẫu cho Lab 8: DES-CBC + SHA-256 + RSA-OAEP qua socket.
+File này sẽ được Receiver ghi đè khi chạy demo với OUTPUT_FILE=sample_output.txt.

@@ -4,13 +4,10 @@ from pathlib import Path
 
 from secure_transfer_utils import build_sender_payload, load_public_key, parse_secure_packet
 
-
 SERVER_IP = os.getenv("SERVER_IP", "127.0.0.1")
 DATA_PORT = int(os.getenv("DATA_PORT", os.getenv("PORT", "6000")))
 RECEIVER_PUBLIC_KEY = os.getenv("RECEIVER_PUBLIC_KEY", "keys/receiver_public.pem")
-SENDER_PRIVATE_KEY = os.getenv("SENDER_PRIVATE_KEY", "keys/sender_private.pem")
 MESSAGE_ENV = os.getenv("MESSAGE")
-
 INPUT_FILE = os.getenv("INPUT_FILE", "")
 LOG_FILE = os.getenv("SENDER_LOG_FILE", "")
 TIMEOUT = float(os.getenv("SOCKET_TIMEOUT", "10"))
@@ -36,14 +33,8 @@ def send_packet(host: str, port: int, packet: bytes) -> None:
 def main() -> None:
     plaintext = get_plaintext()
     receiver_public_key = load_public_key(RECEIVER_PUBLIC_KEY)
-    packet, des_key, ciphertext_with_iv, plaintext_hash = build_sender_payload(
-        plaintext,
-        receiver_public_key,
-        SENDER_PRIVATE_KEY,
-    )
+    packet, des_key, ciphertext_with_iv, plaintext_hash = build_sender_payload(plaintext, receiver_public_key)
     encrypted_des_key, _, _ = parse_secure_packet(packet)
-
-
 
     send_packet(SERVER_IP, DATA_PORT, packet)
 
