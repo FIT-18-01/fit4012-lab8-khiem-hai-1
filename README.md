@@ -1,4 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/lnmamCNz)
+
 # FIT4012 - Lab 8 - Xây dựng ứng dụng truyền dữ liệu an toàn
 
 Repo starter kit này dùng cho **Lab 8**: xây dựng chương trình truyền dữ liệu an toàn qua **TCP socket** bằng mô hình lai:
@@ -15,19 +16,19 @@ Lab 8 kế thừa cách tổ chức repo của Lab 6 socket starter, nhưng thay
 
 ## Team members
 
-- **Thành viên 1**: TODO_MEMBER_1 - MSSV: TODO_MEMBER_1_ID
-- **Thành viên 2**: TODO_MEMBER_2 - MSSV: TODO_MEMBER_2_ID
+- **Thành viên 1**: Trần Đình Khiêm - MSSV: 1871020334
+- **Thành viên 2**: La Văn Hải - MSSV: 1871020215
 
 ## Task division
 
-- **Thành viên 1 phụ trách chính**: TODO_ROLE_MEMBER_1
-- **Thành viên 2 phụ trách chính**: TODO_ROLE_MEMBER_2
-- **Phần làm chung**: TODO_SHARED_WORK
+- **Thành viên 1 phụ trách chính**: receiver
+- **Thành viên 2 phụ trách chính**: sender
+- **Phần làm chung**: chạy
 
 ## Demo roles
 
-- **Demo Sender / mã hóa / log gửi**: TODO_DEMO_ROLE_1
-- **Demo Receiver / giải mã / kiểm tra hash**: TODO_DEMO_ROLE_2
+- **Demo Sender / mã hóa / log gửi**: La Văn Hải
+- **Demo Receiver / giải mã / kiểm tra hash**: Trần Đình Khiêm
 - **Cả hai cùng trả lời câu hỏi mở rộng AES và chữ ký số**: TODO_DEMO_ROLE_SHARED
 
 ---
@@ -82,13 +83,13 @@ Sender gửi **một gói dữ liệu nhị phân** qua socket theo thứ tự:
 
 Ý nghĩa từng trường:
 
-| Trường | Ý nghĩa |
-|---|---|
-| `len_key` | Độ dài khóa DES đã mã hóa bằng RSA, lưu bằng 4 byte network byte order |
-| `encrypted_des_key` | DES key 8 byte sau khi được mã hóa bằng RSA public key của Receiver |
-| `len_cipher` | Độ dài ciphertext, bao gồm IV ở 8 byte đầu |
-| `ciphertext` | `IV + DES_CBC(PKCS7(plaintext))` |
-| `sha256_hash` | SHA-256 của plaintext gốc, dài 32 byte |
+| Trường              | Ý nghĩa                                                                |
+| ------------------- | ---------------------------------------------------------------------- |
+| `len_key`           | Độ dài khóa DES đã mã hóa bằng RSA, lưu bằng 4 byte network byte order |
+| `encrypted_des_key` | DES key 8 byte sau khi được mã hóa bằng RSA public key của Receiver    |
+| `len_cipher`        | Độ dài ciphertext, bao gồm IV ở 8 byte đầu                             |
+| `ciphertext`        | `IV + DES_CBC(PKCS7(plaintext))`                                       |
+| `sha256_hash`       | SHA-256 của plaintext gốc, dài 32 byte                                 |
 
 ---
 
