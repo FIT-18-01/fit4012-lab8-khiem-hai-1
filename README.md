@@ -15,20 +15,20 @@ Lab 8 kế thừa cách tổ chức repo của Lab 6 socket starter, nhưng thay
 
 ## Team members
 
-- **Thành viên 1**: TODO_MEMBER_1 - MSSV: TODO_MEMBER_1_ID
-- **Thành viên 2**: TODO_MEMBER_2 - MSSV: TODO_MEMBER_2_ID
+- **Thành viên 1**: Trần Đình Khiêm - MSSV: 1871020334
+- **Thành viên 2**: La Văn Hải - MSSV: 1871020215
 
 ## Task division
 
-- **Thành viên 1 phụ trách chính**: TODO_ROLE_MEMBER_1
-- **Thành viên 2 phụ trách chính**: TODO_ROLE_MEMBER_2
-- **Phần làm chung**: TODO_SHARED_WORK
+- **Thành viên 1 phụ trách chính**: Receiver
+- **Thành viên 2 phụ trách chính**: Sender
+- **Phần làm chung**: Chạy demo, test, và hoàn thiện tài liệu
 
 ## Demo roles
 
-- **Demo Sender / mã hóa / log gửi**: TODO_DEMO_ROLE_1
-- **Demo Receiver / giải mã / kiểm tra hash**: TODO_DEMO_ROLE_2
-- **Cả hai cùng trả lời câu hỏi mở rộng AES và chữ ký số**: TODO_DEMO_ROLE_SHARED
+- **Demo Sender / mã hóa / log gửi**: La Văn Hải
+- **Demo Receiver / giải mã / kiểm tra hash**: Trần Đình Khiêm
+- **Cả hai cùng trả lời câu hỏi mở rộng AES và chữ ký số**: Cả hai
 
 ---
 
@@ -129,22 +129,45 @@ Trong demo học tập local, hai file có thể nằm cùng repo. Trong hệ th
 
 ## Bước 2 - Chạy demo local
 
-### Terminal 1 - Receiver
+### Linux / macOS
+
+Terminal 1 - Receiver:
 
 ```bash
-RECEIVER_HOST=127.0.0.1 \
-DATA_PORT=6000 \
-RECEIVER_PRIVATE_KEY=keys/receiver_private.pem \
+export RECEIVER_HOST=127.0.0.1
+export DATA_PORT=6000
+export RECEIVER_PRIVATE_KEY=keys/receiver_private.pem
 python receiver.py
 ```
 
-### Terminal 2 - Sender
+Terminal 2 - Sender:
 
 ```bash
-SERVER_IP=127.0.0.1 \
-DATA_PORT=6000 \
-RECEIVER_PUBLIC_KEY=keys/receiver_public.pem \
-MESSAGE="Xin chao FIT4012 - Lab 8 Secure Transfer" \
+export SERVER_IP=127.0.0.1
+export DATA_PORT=6000
+export RECEIVER_PUBLIC_KEY=keys/receiver_public.pem
+export MESSAGE="Xin chao FIT4012 - Lab 8 Secure Transfer"
+python sender.py
+```
+
+### Windows PowerShell
+
+Terminal 1 - Receiver:
+
+```powershell
+$env:RECEIVER_HOST = "127.0.0.1"
+$env:DATA_PORT = "6000"
+$env:RECEIVER_PRIVATE_KEY = "keys/receiver_private.pem"
+python receiver.py
+```
+
+Terminal 2 - Sender:
+
+```powershell
+$env:SERVER_IP = "127.0.0.1"
+$env:DATA_PORT = "6000"
+$env:RECEIVER_PUBLIC_KEY = "keys/receiver_public.pem"
+$env:MESSAGE = "Xin chao FIT4012 - Lab 8 Secure Transfer"
 python sender.py
 ```
 
@@ -152,25 +175,51 @@ python sender.py
 
 ## Chạy có log minh chứng
 
+### Linux / macOS
+
 Terminal 1:
 
 ```bash
-RECEIVER_HOST=127.0.0.1 \
-DATA_PORT=6000 \
-RECEIVER_PRIVATE_KEY=keys/receiver_private.pem \
-RECEIVER_LOG_FILE=logs/receiver_success.log \
-OUTPUT_FILE=sample_output.txt \
+export RECEIVER_HOST=127.0.0.1
+export DATA_PORT=6000
+export RECEIVER_PRIVATE_KEY=keys/receiver_private.pem
+export RECEIVER_LOG_FILE=logs/receiver_success.log
+export OUTPUT_FILE=sample_output.txt
 python receiver.py
 ```
 
 Terminal 2:
 
 ```bash
-SERVER_IP=127.0.0.1 \
-DATA_PORT=6000 \
-RECEIVER_PUBLIC_KEY=keys/receiver_public.pem \
-MESSAGE="Xin chao FIT4012 - Lab 8 Secure Transfer" \
-SENDER_LOG_FILE=logs/sender_success.log \
+export SERVER_IP=127.0.0.1
+export DATA_PORT=6000
+export RECEIVER_PUBLIC_KEY=keys/receiver_public.pem
+export MESSAGE="Xin chao FIT4012 - Lab 8 Secure Transfer"
+export SENDER_LOG_FILE=logs/sender_success.log
+python sender.py
+```
+
+### Windows PowerShell
+
+Terminal 1:
+
+```powershell
+$env:RECEIVER_HOST = "127.0.0.1"
+$env:DATA_PORT = "6000"
+$env:RECEIVER_PRIVATE_KEY = "keys/receiver_private.pem"
+$env:RECEIVER_LOG_FILE = "logs/receiver_success.log"
+$env:OUTPUT_FILE = "sample_output.txt"
+python receiver.py
+```
+
+Terminal 2:
+
+```powershell
+$env:SERVER_IP = "127.0.0.1"
+$env:DATA_PORT = "6000"
+$env:RECEIVER_PUBLIC_KEY = "keys/receiver_public.pem"
+$env:MESSAGE = "Xin chao FIT4012 - Lab 8 Secure Transfer"
+$env:SENDER_LOG_FILE = "logs/sender_success.log"
 python sender.py
 ```
 
@@ -178,16 +227,46 @@ python sender.py
 
 ## Gửi dữ liệu từ file
 
+### Linux / macOS
+
 Terminal 1:
 
 ```bash
-RECEIVER_HOST=127.0.0.1 DATA_PORT=6000 OUTPUT_FILE=sample_output.txt python receiver.py
+export RECEIVER_HOST=127.0.0.1
+export DATA_PORT=6000
+export OUTPUT_FILE=sample_output.txt
+python receiver.py
 ```
 
 Terminal 2:
 
 ```bash
-SERVER_IP=127.0.0.1 DATA_PORT=6000 INPUT_FILE=sample_input.txt python sender.py
+export SERVER_IP=127.0.0.1
+export DATA_PORT=6000
+export RECEIVER_PUBLIC_KEY=keys/receiver_public.pem
+export INPUT_FILE=sample_input.txt
+python sender.py
+```
+
+### Windows PowerShell
+
+Terminal 1:
+
+```powershell
+$env:RECEIVER_HOST = "127.0.0.1"
+$env:DATA_PORT = "6000"
+$env:OUTPUT_FILE = "sample_output.txt"
+python receiver.py
+```
+
+Terminal 2:
+
+```powershell
+$env:SERVER_IP = "127.0.0.1"
+$env:DATA_PORT = "6000"
+$env:RECEIVER_PUBLIC_KEY = "keys/receiver_public.pem"
+$env:INPUT_FILE = "sample_input.txt"
+python sender.py
 ```
 
 ---

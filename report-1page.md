@@ -24,8 +24,8 @@ Xây dựng chương trình truyền dữ liệu an toàn qua socket bằng các
 
 ## 4. Kết quả minh chứng
 
-- Ảnh chụp màn hình Sender: TODO_SCREENSHOT_SENDER
-- Ảnh chụp màn hình Receiver: TODO_SCREENSHOT_RECEIVER
+- Ảnh chụp màn hình Sender: Chạy local và lưu log trong `logs/sender_success.log`
+- Ảnh chụp màn hình Receiver: Chạy local và lưu log trong `logs/receiver_success.log`
 - File log Sender: `logs/sender_success.log`
 - File log Receiver: `logs/receiver_success.log`
 
